@@ -12,6 +12,8 @@ Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://j
 consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
 Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
 
+Please don't use any `<blink>` tags.
+
 > Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
 id sem consectetuer libero luctus adipiscing.
 
