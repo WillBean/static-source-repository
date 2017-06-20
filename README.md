@@ -15,8 +15,9 @@ Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
 Please don't use any ~~`<blink>`~~tags.
 
 ```java
-Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
-id sem consectetuer libero luctus adipiscing.
+private class ABC{
+    ABC(){}
+}
 ```
 > This is the first level of quoting.
 >
