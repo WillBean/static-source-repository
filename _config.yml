@@ -1,1 +1,4 @@
 theme: jekyll-theme-cayman
+markdown: redcarpet
+redcarpet:
+    extensions: ["fenced_code_blocks", "autolink", "tables", "strikethrough"]
