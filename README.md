@@ -14,7 +14,7 @@ Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
 
 Please don't use any ~~`<blink>`~~tags.
 
-> ```javascript
+```java
 Donec sit amet nisl. Aliquam semper ipsum sit amet velit. Suspendisse
 id sem consectetuer libero luctus adipiscing.
 ```
