@@ -1,75 +1,22 @@
-## Welcome to GitHub Pages
+## React Native实战总结
 
-You can use the [editor on GitHub](https://github.com/WillBean/react-native-summary.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+入职有道数月，主要参与了精品课垂直页的改版，期间遇到了不少坑，虽然还未正式上线，但是也值得总结一波，故写下此文。
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### 需求介绍
 
-### Markdown
+*  首页部分：加入日志控制工具以收集、统计用户操作；改写搜索框写法，将搜索框提取成独立的共用组件。
+*  垂直页部分：此次改版集中在垂直页，新版垂直页将导航部分改版加入搜索框；重新设计了Banner部分；课程入口信息增多样式改变；将原本的两列布局改成新版的一列布局，还加入了原本没有的（图片）小标题。
 
-    Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### 实现方案及问题
 
-    > This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
-consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
-Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.
+#### 一、日志控制
 
-Please don't use any ~~`<blink>`~~tags.
+首页
 
-```java
-private class ABC{
-    ABC(){}
-}
-```
-> This is the first level of quoting.
->
-> > This is nested blockquote.
->
-> Back to the first level.
+#### 二、搜索框提取
+#### 三、导航栏
+#### 四、Banner
+#### 五、课程入口
+#### 六、小标题
 
-> ## 这是一个标题。
-> 
-> 1.   这是第一行列表项。
-> 2.   这是第二行列表项。
-> 
->给出一些例子代码：
-> 
-> return shell_exec("echo $input | $markdown_script");
-
-*   Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-    Aliquam hendrerit mi posuere lectus. Vestibulum enim wisi,
-    viverra nec, fringilla in, laoreet vitae, risus.
-*   Donec sit amet nisl. Aliquam semper ipsum sit amet velit.
-    Suspendisse id sem consectetuer libero luctus adipiscing.
-    
-*   Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-Aliquam hendrerit mi posuere lectus. Vestibulum enim wisi,
-viverra nec, fringilla in, laoreet vitae, risus.
-*   Donec sit amet nisl. Aliquam semper ipsum sit amet velit.
-Suspendisse id sem consectetuer libero luctus adipiscing.
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/WillBean/react-native-summary.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+### 优化
