@@ -84,16 +84,38 @@ LogControl.prototype.constructor = LogControl;
 ###### 布局
 
 <div align='center'>
-<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/vertical3.jpg' align='left' width='31%'>
-
-<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/vertical1.jpg' align='left' width='31%'>
+<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/vertical3.jpg' width='31%'>
+<span>旧版</span>
 </div>
 
+
+
+<div align='center'>
+<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/vertical1.jpg' width='31%'>
+</div>
+
+新版
+
 ###### 问题描述
 
+不同于旧版，新版导航去掉了原来的滚动条，改为了垂直标题+搜索框的形式。
 
+###### 遇到问题及解决方案
 
-###### 问题描述
+*  React native的元素堆叠顺序无法通过zIndex，所以如果将导航组件写在最前面的话，搜索页会被下面的ScrollView遮盖。<br>
+解决方案：将搜索框改为绝对定位并置于文档最后。
+*  导航标题字数不一，如果搜索框宽度固定，可能会与标题重叠。<br>
+解决方案：在原有导航位置放置一个仅有背景色和高度的View组件，将标题和搜索框作为一个整体放置在文档最下面，然后通过绝对定位覆盖在View组件上层，此时搜索框就可以设置为自适应宽度了。
+
+```javascript
+      <View style={[styles.container, Platform.OS === 'android' && !isTeacher ? {marginTop: tag.get('hideStatusBar') ? statusBarHeight : 0} : {marginTop: 0}]}>
+        {isTeacher ? null : <View style={styles.headNav}/>} // 这个<View>仅用于占位
+        <ScrollView>
+            ...
+        </ScrollView>
+        {this._renderFixedNav(tag, this.state.isYoudaoCourseApp)} // 真正的导航栏
+      </View>
+```
 
 #### 四、Banner
 #### 五、课程入口
