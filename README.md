@@ -11,9 +11,7 @@
 
 #### 一、日志控制
 
-首页布局如下：
-
-<div>
+###### 首页布局
 
 <img src='/images/home1.jpg' align='left' width='31%'>
 
@@ -21,11 +19,32 @@
 
 <img src='/images/home3.jpg' align='left' width='31%'>
 
-<div style="clear:both"></div>
+###### 问题描述
 
-</div>
+日志控制要求在Banner、课程分类列表、公开课列表、猜你喜欢、精选课程等模块出现在屏幕时发送一条日志，滑出屏幕再滑入也应该重新发送，其中Banner、课程分类列表和公开课列表是可以横向滑动的，滑动时要发送展示部分的日志，每个部分来回滚动也仅发送一次。
 
-日志控制要求在Banner、课程分类列表、公开课列表、猜你喜欢、精选课程等模块出现在屏幕时发送一条日志，滑出屏幕再滑入也应该重新发送，其中Banner、课程分类列表和公开课列表是可以横向滑动的，
+因为要获取各个部分的offsetTop和height，所以目前使用的方案是使用EventEmitter，在各组件onLayout的时候将组件的offsetTop和height发送给日志管理(LogControl)组件，为了方便使用，组件使用了[单例模式](http://www.cnblogs.com/TomXu/archive/2012/02/20/2352817.html),并继承了EventEmitter，在需要发送日志的组件下引入LogControl实例来传递信息，在Home组件的滚动事件下监听各组件的状态，如进入屏幕则发送日志。
+
+###### 相关代码
+
+```javascript
+import Events from 'event-emitter'
+export default function LogControl() {
+    // 判断是否存在实例
+    if (typeof LogControl.instance === 'object') {
+        return LogControl.instance;
+    }
+    
+    this._listObject = {};
+    this._offsetTopList = {};
+
+    // 缓存
+    LogControl.instance = this;
+}
+LogControl.prototype = new Events()
+LogControl.prototype.constructor = LogControl;
+```
+###### 遇到问题
 
 #### 二、搜索框提取
 #### 三、导航栏
