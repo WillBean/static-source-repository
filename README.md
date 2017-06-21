@@ -53,6 +53,32 @@ LogControl.prototype.constructor = LogControl;
 解决方案二：在Home组件componentDidUpdate中调用一次LogControl中的方法去发送日志。
 
 #### 二、搜索框提取
+
+###### 问题描述
+
+因为垂直页改版后需要使用到搜索框，故将原本只是用于首页的搜索框组件提取为公用组件，将相关样式改为了可配置的形式，由父组件通过参数传入，因为首页和垂直页的搜索页一致，所以保留了其样式，日后如有需要再进行修改。
+
+###### 相关代码
+
+```javascript
+      <Search
+        isYoudaoCourseApp={this.state.isYoudaoCourseApp}
+        // setScrollViewEnableFunc={this.setScrollViewEnableFunc}
+        hasSearchBg={this.state.hasSearchBg}
+        setBarStyleFunc={this.setBarStyleFunc}
+        fadeAnim={this.state.fadeAnim}
+
+        searchContainerStyle={searchStyle.containerSearch}
+        searchOuterHideBarStyle={searchStyle.outerHideBar}
+        searchOuterStyle={searchStyle.outer}
+        searchOuterBgStyle={searchStyle.outerBg}
+        searchPlaceHolderStyle={searchStyle.searchPlaceHolder}
+        searchInputContainerStyle={searchStyle.searchInputCon}
+        searchInputStyle={[searchStyle.searchInput, {backgroundColor: this.state.hasSearchBg ? 'rgba(233,233,233,.8)' : 'rgba(255,255,255,.8)'}]}
+        searchIconStyle={searchStyle.icSearch}
+      />
+```
+
 #### 三、导航栏
 #### 四、Banner
 #### 五、课程入口
