@@ -118,6 +118,27 @@ LogControl.prototype.constructor = LogControl;
 ```
 
 #### 四、Banner
+
+###### 问题描述
+
+如上图，新版Banner每个图片并不占据整个屏宽，两边露出上下两张图片的一小部分，以做WEB的滑动组件的经验来说，要实现这样的功能，无非也就是通过绝对定位设置滚动栏，滚动时通过改变left或者translate来改变位置，如下图：
+
+<div align='center'>
+<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/prototype.png' width='80%'>
+</div>
+
+类推到这里，想要实现新版的效果，只需要将外层容器宽度设置成对应的数值，在设置overflow:visible即可，如下图：
+
+<div align='center'>
+<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/prototype2.png' width='80%'>
+</div>
+
+在IOS端，一切正如我所料，相当之顺利，但是拿起安卓机一看，好像不太对劲，并没有出现预期的效果，Google一番得知，安卓不支持overflow属性！？
+
+由于原本使用的是第三方的[react-native-swiper组件](https://github.com/leecade/react-native-swiper)，出现这种情况赶紧翻看一下源码，看看能不能找到什么解决方案，然后发现在IOS端Swiper使用的是ScrollView，而在Android端使用的是ViewPagerAndroid，找了个安卓的朋友问了问，在原生安卓上使用ViewPager是可以实现这样的效果的([ViewPager实现一个页面多个Item的显示](http://m.blog.csdn.net/hb8676086/article/details/50628429))，然而，ViewPagerAndroid并没有提供诸如clipChildren、layerType的属性，只能寻求别的方案了。
+
+奋斗几天无果，后来在网上看到[react-native-viewpager组件](https://github.com/race604/react-native-viewpager)，
+
 #### 五、课程入口
 #### 六、小标题
 
