@@ -13,11 +13,11 @@
 
 ###### 首页布局
 
-<img src='/images/home1.jpg' align='left' width='31%'>
+<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/home1.jpg' align='left' width='31%'>
 
-<img src='/images/home2.jpg' align='left' width='31%'>
+<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/home2.jpg' align='left' width='31%'>
 
-<img src='/images/home3.jpg' align='left' width='31%'>
+<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/home3.jpg' align='left' width='31%'>
 
 ###### 问题描述
 
@@ -83,7 +83,14 @@ LogControl.prototype.constructor = LogControl;
 
 ###### 布局
 
-<center><img src='/images/vertical1.jpg' width='31%'></center>
+<div align='center'>
+<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/vertica3.jpg' alt='旧版' width='31%'>
+<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/vertical.jpg' alt='新版' width='31%'>
+</div>
+
+###### 问题描述
+
+
 
 ###### 问题描述
 
