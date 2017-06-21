@@ -13,11 +13,13 @@
 
 首页布局如下：
 
-<div align=center><img src='/images/home1.jpg' width='31%'></div>
+<img src='/images/home1.jpg' align='left' width='31%'>
 
 <img src='/images/home2.jpg' align='left' width='31%'>
 
 <img src='/images/home3.jpg' align='left' width='31%'>
+
+<div style='clear:both'>dsa</div>
 
 日志控制要求在Banner、课程分类列表、公开课列表、猜你喜欢、精选课程等模块出现在屏幕时发送一条日志，滑出屏幕再滑入也应该重新发送，其中Banner、课程分类列表和公开课列表是可以横向滑动的，
 
