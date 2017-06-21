@@ -13,7 +13,7 @@
 
 首页布局如下：
 
-<img src='/images/home1.jpg' align='left' width='31%' style='padding-bottom:20px'>
+<div align=center><img src='/images/home1.jpg' width='31%'></div>
 
 <img src='/images/home2.jpg' align='left' width='31%'>
 
