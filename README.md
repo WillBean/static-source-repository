@@ -80,6 +80,13 @@ LogControl.prototype.constructor = LogControl;
 ```
 
 #### 三、导航栏
+
+###### 布局
+
+<center><img src='/images/vertical1.jpg' width='31%'></center>
+
+###### 问题描述
+
 #### 四、Banner
 #### 五、课程入口
 #### 六、小标题
