@@ -11,7 +11,15 @@
 
 #### 一、日志控制
 
-首页
+首页布局如下：
+
+<img src='/images/home1.jpg' align='left' width='31%' style='padding-bottom:20px'>
+
+<img src='/images/home2.jpg' align='left' width='31%'>
+
+<img src='/images/home3.jpg' align='left' width='31%'>
+
+日志控制要求在Banner、课程分类列表、公开课列表、猜你喜欢、精选课程等模块出现在屏幕时发送一条日志，滑出屏幕再滑入也应该重新发送，其中Banner、课程分类列表和公开课列表是可以横向滑动的，
 
 #### 二、搜索框提取
 #### 三、导航栏
