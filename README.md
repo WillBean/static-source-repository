@@ -44,7 +44,13 @@ export default function LogControl() {
 LogControl.prototype = new Events()
 LogControl.prototype.constructor = LogControl;
 ```
-###### 遇到问题
+###### 遇到问题及解决方案
+
+*  安卓在组件滑动时会重复调用onLayout事件，导致日志重复发送。<br>
+解决方案：在组件内增加一个属性判断是否触发过onLayout事件，是则不再调用。
+*  安卓在初次进入首页加载完成后不会自动滚动，而IOS下会有滚动效果，导致安卓下只有在滑动了屏幕之后才会发送日志。<br>
+解决方案一：安卓在加载完毕后手动调用scrollTo方法去触发一次onScroll事件。(未采用)<br>
+解决方案二：在Home组件componentDidUpdate中调用一次LogControl中的方法去发送日志。
 
 #### 二、搜索框提取
 #### 三、导航栏
