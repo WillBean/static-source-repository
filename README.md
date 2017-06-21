@@ -83,7 +83,11 @@ LogControl.prototype.constructor = LogControl;
 
 ###### 布局
 
+<div align='center'>
+<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/vertical3.jpg' align='left' width='31%'>
+
 <img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/vertical1.jpg' align='left' width='31%'>
+</div>
 
 ###### 问题描述
 
