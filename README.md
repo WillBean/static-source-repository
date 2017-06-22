@@ -216,7 +216,7 @@ ViewPager组件调用
 
 一般来说，一个简单的RN应用，打包之后的bundle会有500+KB是属于RN的依赖，与业务无关，而我们的APP将安卓打包之后生成的bundle有900+KB，其中绝大部分应该也是来自各种依赖文件，如果能将依赖和业务文件拆分开来，生成一个common.bundle、一个或多个business.bundle，那么我们可以在一定程度上改善用户体验。
 
->  *  减少初始时间（提前运行基础代码）
+>  *  减少初始时间（提前运行基础代码）
 >  *  部分更新
 >  *  在多个bundle之间共享公共模块
 
@@ -228,7 +228,8 @@ ViewPager组件调用
 
 目前可参考的拆包方案有
 
-*  [携程是如何做React Native优化的](https://zhuanlan.zhihu.com/p/23715716)，[moles-packer](https://github.com/ctripcorp/moles-packer)(携程似乎已经放弃这个方案，改为以unbundle为基础的拆包方案)
+*  [携程是如何做React Native优化的](https://zhuanlan.zhihu.com/p/23715716)
+*  携程的[moles-packer](https://github.com/ctripcorp/moles-packer)(携程似乎已经放弃这个方案，改为以unbundle为基础的拆包方案)
 *  [【React Native】一个简单的拆分Bundle&资源做法](https://blog.desmondyao.com/rn-split/)
 *  [React Native Bundle Split](http://coofee.github.io/post/react-native-bundle-split/)
 *  [react-native-split](https://github.com/desmond1121/react-native-split)
