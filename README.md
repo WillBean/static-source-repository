@@ -88,13 +88,10 @@ LogControl.prototype.constructor = LogControl;
 <span>旧版</span>
 </div>
 
-
-
 <div align='center'>
 <img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/vertical1.jpg' width='31%'>
+<span>新版</span>
 </div>
-
-新版
 
 ###### 问题描述
 
@@ -137,7 +134,34 @@ LogControl.prototype.constructor = LogControl;
 
 由于原本使用的是第三方的[react-native-swiper组件](https://github.com/leecade/react-native-swiper)，出现这种情况赶紧翻看一下源码，看看能不能找到什么解决方案，然后发现在IOS端Swiper使用的是ScrollView，而在Android端使用的是ViewPagerAndroid，找了个安卓的朋友问了问，在原生安卓上使用ViewPager是可以实现这样的效果的([ViewPager实现一个页面多个Item的显示](http://m.blog.csdn.net/hb8676086/article/details/50628429))，然而，ViewPagerAndroid并没有提供诸如clipChildren、layerType的属性，只能寻求别的方案了。
 
-奋斗几天无果，后来在网上看到[react-native-viewpager组件](https://github.com/race604/react-native-viewpager)，
+后来决定用Animate自己写一个滑动组件出来，写了个小demo，发现十分卡顿，可能姿势不对吧。
+
+奋斗几天无果，后来在网上看到[react-native-viewpager组件](https://github.com/race604/react-native-viewpager)，无奈之下下载来看看源码，居然也是用Animate写的，感觉有戏！为了实现设计稿的效果，改了一下源码并拷贝出来作为一个自己的组件来使用。
+
+用这个组件虽然实现了想要的效果，但是性能相较于ViewPagerAndroid确实要低一些，滑动过程中会有些许卡顿，为了不影响IOS端，IOS端还是保留了原来的写法，仅在Android端使用。
+
+###### 相关代码
+ViewPager组件源码修改
+```javascript
+    var offset = this.props.offset; // 加入offset属性来设置偏移
+    // this.childIndex = hasLeft ? 1 : 0;
+    // this.state.scrollValue.setValue(this.childIndex);
+    var translateX = this.state.scrollValue.interpolate({
+      inputRange: [0, 1], outputRange: [offset, -viewWidth + offset] // 修改了滑动范围
+    });
+```
+ViewPager组件调用
+```javascript
+                <ViewPager
+                  dataSource={ds}
+                  renderPageIndicator={false}
+                  isLoop={ds.pageIdentities.length > 1}
+                  autoPlay={true}
+                  offset={calculatePixel(16)}
+                  childWidth={calculatePixel(328)} // 定义每个子元素的实际宽度（加入了边距）
+                  renderPage={this._renderBannerItem.bind(this)}
+                />
+```
 
 #### 五、课程入口
 #### 六、小标题
