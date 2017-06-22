@@ -192,9 +192,9 @@ ViewPager组件调用
 安卓GPU过度绘制的颜色信息大致如下：
 
 >  *  蓝色1x过度绘制
-*  绿色2x过度绘制
-*  淡红色3x过度绘制
-*  红色超过4x过度绘制
+>  *  绿色2x过度绘制
+>  *  淡红色3x过度绘制
+>  *  红色超过4x过度绘制
 
 颜色越浅表示过度绘制程度越低，原色表示没有过度绘制。
 
@@ -213,3 +213,29 @@ ViewPager组件调用
 首页和垂直页差距似乎有点大，这里看到垂直页基本满屏大红，导致这个问题的原因不是垂直页充满了大量的背景，而是路由切换并没有把首页隐藏，垂直页相当于一整个元素覆盖在首页上方，所以看到的满屏大红是首页绘制加上垂直页绘制的效果，所以我们似乎找到了一个可以优化的地方：<em>如何在路由切换的时候将首页隐藏或者像原生APP那样切换到一个新的界面？</em>
 
 #### 二、bundle拆包
+
+一般来说，一个简单的RN应用，打包之后的bundle会有500+KB是属于RN的依赖，与业务无关，而我们的APP将安卓打包之后生成的bundle有900+KB，其中绝大部分应该也是来自各种依赖文件，如果能将依赖和业务文件拆分开来，生成一个common.bundle、一个或多个business.bundle，那么我们可以在一定程度上改善用户体验。
+
+>  *  减少初始时间（提前运行基础代码）
+>  *  部分更新
+>  *  在多个bundle之间共享公共模块
+
+<div align='center'>
+<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/bundle.png' width='80%'>
+</div>
+
+上图引自[issue/5399](https://github.com/facebook/react-native/issues/5399)，在用户进入应用之前，我们就可以加载并运行common.bundle，并在用户进入应用之后加载指定的业务文件，而不必一次性把所有东西都加载进行，以提升性能。
+
+目前可参考的拆包方案有
+
+*  [携程是如何做React Native优化的](https://zhuanlan.zhihu.com/p/23715716)，[moles-packer](https://github.com/ctripcorp/moles-packer)(携程似乎已经放弃这个方案，改为以unbundle为基础的拆包方案)
+*  [【React Native】一个简单的拆分Bundle&资源做法](https://blog.desmondyao.com/rn-split/)
+*  [React Native Bundle Split](http://coofee.github.io/post/react-native-bundle-split/)
+*  [react-native-split](https://github.com/desmond1121/react-native-split)
+
+### 问题总览
+
+*  安卓RN不支持overflow属性
+*  安卓ScrollView等组件在滑动的时候会触发自己和其他组件的onLayout事件
+*  安卓line-height属性不支持小数
+*  安卓在背景色过度设置的时候会严重影响性能
