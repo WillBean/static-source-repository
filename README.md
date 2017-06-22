@@ -177,4 +177,37 @@ ViewPager组件调用
 
 这一部分比较简单，似乎没啥好说的。
 
-### 优化
+### 优化方案
+
+#### 一、减少过度绘制
+
+在安卓机的开发者选项中可以开启“调试GPU过度绘制”，如下图：
+
+<div align='center'>
+<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/android1.png' width='33%'>
+</div>
+
+关于安卓过度绘制的详情可以在[这里](http://blog.csdn.net/moyameizan/article/details/47807327)查看，简单来说就是界面元素的多重层叠，假设每层元素都有背景，那么对于用户来说，只有最上层的背景才是可以看到的，其它的背景虽然绘制了，但是却没有起到效果，就是过度绘制了。
+
+安卓GPU过度绘制的颜色信息大致如下：
+
+>  蓝色1x过度绘制
+>  绿色2x过度绘制
+>  淡红色3x过度绘制
+>  红色超过4x过度绘制
+
+颜色越浅表示过度绘制程度越低，原色表示没有过度绘制。
+
+现在来看看自己的APP会呈现出什么效果：
+
+<div align='center'>
+<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/android2.png' width='33%'>
+<span>首页</span>
+</div>
+
+<div align='center'>
+<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/android3.png' width='33%'>
+<span>垂直页</span>
+</div>
+
+首页和垂直页差距似乎有点大，这里看到垂直页基本满屏大红，导致这个问题的原因不是垂直页充满了大量的背景，而是路由切换并没有把首页隐藏，垂直页相当于一整个元素覆盖在首页上方，所以看到的满屏大红是首页绘制加上垂直页绘制的效果，所以我们似乎找到了一个可以优化的地方：<em>如何在路由切换的时候将首页隐藏或者像原生APP那样切换到一个新的界面？</em>
