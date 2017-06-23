@@ -13,11 +13,17 @@
 
 ##### 首页布局
 
-<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/home1.jpg' align='left' width='31%'>
+<div align='center'>
+<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/home1.jpg' width='50%'>
+</div>
 
-<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/home2.jpg' align='left' width='31%'>
+<div align='center'>
+<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/home2.jpg' width='50%'>
+</div>
 
-<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/home3.jpg' align='left' width='31%'>
+<div align='center'>
+<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/home3.jpg' width='50%'>
+</div>
 
 ##### 问题描述
 
@@ -84,12 +90,12 @@ LogControl.prototype.constructor = LogControl;
 ##### 布局
 
 <div align='center'>
-<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/vertical3.jpg' width='31%'>
+<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/vertical3.jpg' width='50%'>
 <span>旧版</span>
 </div>
 
 <div align='center'>
-<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/vertical1.jpg' width='31%'>
+<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/vertical1.jpg' width='50%'>
 <span>新版</span>
 </div>
 
@@ -121,13 +127,13 @@ LogControl.prototype.constructor = LogControl;
 如上图，新版Banner每个图片并不占据整个屏宽，两边露出上下两张图片的一小部分，以做WEB的滑动组件的经验来说，要实现这样的功能，无非也就是通过绝对定位设置滚动栏，滚动时通过改变left或者translate来改变位置，如下图：
 
 <div align='center'>
-<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/prototype.png' width='80%'>
+<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/prototype.png' width='95%'>
 </div>
 
 类推到这里，想要实现新版的效果，只需要将外层容器宽度设置成对应的数值，在设置overflow:visible即可，如下图：
 
 <div align='center'>
-<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/prototype2.png' width='80%'>
+<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/prototype2.png' width='95%'>
 </div>
 
 在IOS端，一切正如我所料，相当之顺利，但是拿起安卓机一看，好像不太对劲，并没有出现预期的效果，Google一番得知，安卓不支持overflow属性！？
@@ -168,7 +174,7 @@ ViewPager组件调用
 ##### 布局
 
 <div align='center'>
-<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/vertical4.jpg' width='31%'>
+<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/vertical4.jpg' width='50%'>
 </div>
 
 ##### 问题描述
@@ -184,7 +190,7 @@ ViewPager组件调用
 在安卓机的开发者选项中可以开启“调试GPU过度绘制”，如下图：
 
 <div align='center'>
-<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/android1.png' width='33%'>
+<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/android1.png' width='50%'>
 </div>
 
 关于安卓过度绘制的详情可以在[这里](http://blog.csdn.net/moyameizan/article/details/47807327)查看，简单来说就是界面元素的多重层叠，假设每层元素都有背景，那么对于用户来说，只有最上层的背景才是可以看到的，其它的背景虽然绘制了，但是却没有起到效果，就是过度绘制了。
@@ -201,12 +207,12 @@ ViewPager组件调用
 现在来看看自己的APP会呈现出什么效果：
 
 <div align='center'>
-<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/android2.png' width='33%'>
+<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/android2.png' width='50%'>
 <span>首页</span>
 </div>
 
 <div align='center'>
-<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/android3.png' width='33%'>
+<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/android3.png' width='50%'>
 <span>垂直页</span>
 </div>
 
@@ -221,7 +227,7 @@ ViewPager组件调用
 >  *  在多个bundle之间共享公共模块
 
 <div align='center'>
-<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/bundle.png' width='80%'>
+<img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/bundle.png' width='95%'>
 </div>
 
 上图引自[issue/5399](https://github.com/facebook/react-native/issues/5399)，在用户进入应用之前，我们就可以加载并运行common.bundle，并在用户进入应用之后加载指定的业务文件，而不必一次性把所有东西都加载进行，以提升性能。
