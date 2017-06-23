@@ -11,7 +11,7 @@
 
 #### 一、日志控制
 
-###### 首页布局
+##### 首页布局
 
 <img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/home1.jpg' align='left' width='31%'>
 
@@ -19,13 +19,13 @@
 
 <img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/home3.jpg' align='left' width='31%'>
 
-###### 问题描述
+##### 问题描述
 
 日志控制要求在Banner、课程分类列表、公开课列表、猜你喜欢、精选课程等模块出现在屏幕时发送一条日志，滑出屏幕再滑入也应该重新发送，其中Banner、课程分类列表和公开课列表是可以横向滑动的，滑动时要发送展示部分的日志，每个部分来回滚动也仅发送一次。
 
 因为要获取各个部分的offsetTop和height，所以目前使用的方案是使用EventEmitter，在各组件onLayout的时候将组件的offsetTop和height发送给日志管理(LogControl)组件，为了方便使用，组件使用了[单例模式](http://www.cnblogs.com/TomXu/archive/2012/02/20/2352817.html),并继承了EventEmitter，在需要发送日志的组件下引入LogControl实例来传递信息，在Home组件的滚动事件下监听各组件的状态，如进入屏幕则发送日志。
 
-###### 相关代码
+##### 相关代码
 
 ```javascript
 import Events from 'event-emitter'
@@ -44,7 +44,7 @@ export default function LogControl() {
 LogControl.prototype = new Events()
 LogControl.prototype.constructor = LogControl;
 ```
-###### 遇到问题及解决方案
+##### 遇到问题及解决方案
 
 *  安卓在组件滑动时会重复调用onLayout事件，导致日志重复发送。<br>
 解决方案：在组件内增加一个属性判断是否触发过onLayout事件，是则不再调用。
@@ -54,34 +54,34 @@ LogControl.prototype.constructor = LogControl;
 
 #### 二、搜索框提取
 
-###### 问题描述
+##### 问题描述
 
 因为垂直页改版后需要使用到搜索框，故将原本只是用于首页的搜索框组件提取为公用组件，将相关样式改为了可配置的形式，由父组件通过参数传入，因为首页和垂直页的搜索页一致，所以保留了其样式，日后如有需要再进行修改。
 
-###### 相关代码
+##### 相关代码
 
 ```javascript
-      <Search
-        isYoudaoCourseApp={this.state.isYoudaoCourseApp}
-        // setScrollViewEnableFunc={this.setScrollViewEnableFunc}
-        hasSearchBg={this.state.hasSearchBg}
-        setBarStyleFunc={this.setBarStyleFunc}
-        fadeAnim={this.state.fadeAnim}
+<Search
+  isYoudaoCourseApp={this.state.isYoudaoCourseApp}
+  // setScrollViewEnableFunc={this.setScrollViewEnableFunc}
+  hasSearchBg={this.state.hasSearchBg}
+  setBarStyleFunc={this.setBarStyleFunc}
+  fadeAnim={this.state.fadeAnim}
 
-        searchContainerStyle={searchStyle.containerSearch}
-        searchOuterHideBarStyle={searchStyle.outerHideBar}
-        searchOuterStyle={searchStyle.outer}
-        searchOuterBgStyle={searchStyle.outerBg}
-        searchPlaceHolderStyle={searchStyle.searchPlaceHolder}
-        searchInputContainerStyle={searchStyle.searchInputCon}
-        searchInputStyle={[searchStyle.searchInput, {backgroundColor: this.state.hasSearchBg ? 'rgba(233,233,233,.8)' : 'rgba(255,255,255,.8)'}]}
-        searchIconStyle={searchStyle.icSearch}
-      />
+  searchContainerStyle={searchStyle.containerSearch}
+  searchOuterHideBarStyle={searchStyle.outerHideBar}
+  searchOuterStyle={searchStyle.outer}
+  searchOuterBgStyle={searchStyle.outerBg}
+  searchPlaceHolderStyle={searchStyle.searchPlaceHolder}
+  searchInputContainerStyle={searchStyle.searchInputCon}
+  searchInputStyle={[searchStyle.searchInput, {backgroundColor: this.state.hasSearchBg ? 'rgba(233,233,233,.8)' : 'rgba(255,255,255,.8)'}]}
+  searchIconStyle={searchStyle.icSearch}
+ />
 ```
 
 #### 三、导航栏
 
-###### 布局
+##### 布局
 
 <div align='center'>
 <img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/vertical3.jpg' width='31%'>
@@ -93,11 +93,11 @@ LogControl.prototype.constructor = LogControl;
 <span>新版</span>
 </div>
 
-###### 问题描述
+##### 问题描述
 
 不同于旧版，新版导航去掉了原来的滚动条，改为了垂直标题+搜索框的形式。
 
-###### 遇到问题及解决方案
+##### 遇到问题及解决方案
 
 *  React native的元素堆叠顺序无法通过zIndex，所以如果将导航组件写在最前面的话，搜索页会被下面的ScrollView遮盖。<br>
 解决方案：将搜索框改为绝对定位并置于文档最后。
@@ -105,18 +105,18 @@ LogControl.prototype.constructor = LogControl;
 解决方案：在原有导航位置放置一个仅有背景色和高度的View组件，将标题和搜索框作为一个整体放置在文档最下面，然后通过绝对定位覆盖在View组件上层，此时搜索框就可以设置为自适应宽度了。
 
 ```javascript
-      <View style={[styles.container, Platform.OS === 'android' && !isTeacher ? {marginTop: tag.get('hideStatusBar') ? statusBarHeight : 0} : {marginTop: 0}]}>
-        {isTeacher ? null : <View style={styles.headNav}/>} // 这个<View>仅用于占位
-        <ScrollView>
-            ...
-        </ScrollView>
-        {this._renderFixedNav(tag, this.state.isYoudaoCourseApp)} // 真正的导航栏
-      </View>
+<View style={[styles.container, Platform.OS === 'android' && !isTeacher ? {marginTop: tag.get('hideStatusBar') ? statusBarHeight : 0} : {marginTop: 0}]}>
+  {isTeacher ? null : <View style={styles.headNav}/>} // 这个<View>仅用于占位
+  <ScrollView>
+  ...
+  </ScrollView>
+  {this._renderFixedNav(tag, this.state.isYoudaoCourseApp)} // 真正的导航栏
+</View>
 ```
 
 #### 四、Banner
 
-###### 问题描述
+##### 问题描述
 
 如上图，新版Banner每个图片并不占据整个屏宽，两边露出上下两张图片的一小部分，以做WEB的滑动组件的经验来说，要实现这样的功能，无非也就是通过绝对定位设置滚动栏，滚动时通过改变left或者translate来改变位置，如下图：
 
@@ -140,38 +140,38 @@ LogControl.prototype.constructor = LogControl;
 
 用这个组件虽然实现了想要的效果，但是性能相较于ViewPagerAndroid确实要低一些，滑动过程中会有些许卡顿，为了不影响IOS端，IOS端还是保留了原来的写法，仅在Android端使用。
 
-###### 相关代码
+##### 相关代码
 ViewPager组件源码修改
 ```javascript
-    var offset = this.props.offset; // 加入offset属性来设置偏移
-    // this.childIndex = hasLeft ? 1 : 0;
-    // this.state.scrollValue.setValue(this.childIndex);
-    var translateX = this.state.scrollValue.interpolate({
-      inputRange: [0, 1], outputRange: [offset, -viewWidth + offset] // 修改了滑动范围
-    });
+var offset = this.props.offset; // 加入offset属性来设置偏移
+// this.childIndex = hasLeft ? 1 : 0;
+// this.state.scrollValue.setValue(this.childIndex);
+var translateX = this.state.scrollValue.interpolate({
+  inputRange: [0, 1], outputRange: [offset, -viewWidth + offset] // 修改了滑动范围
+});
 ```
 ViewPager组件调用
 ```javascript
-                <ViewPager
-                  dataSource={ds}
-                  renderPageIndicator={false}
-                  isLoop={ds.pageIdentities.length > 1}
-                  autoPlay={true}
-                  offset={calculatePixel(16)}
-                  childWidth={calculatePixel(328)} // 定义每个子元素的实际宽度（加入了边距）
-                  renderPage={this._renderBannerItem.bind(this)}
-                />
+<ViewPager
+  dataSource={ds}
+  renderPageIndicator={false}
+  isLoop={ds.pageIdentities.length > 1}
+  autoPlay={true}
+  offset={calculatePixel(16)}
+  childWidth={calculatePixel(328)} // 定义每个子元素的实际宽度（加入了边距）
+  renderPage={this._renderBannerItem.bind(this)}
+/>
 ```
 
 #### 五、其他部分
 
-###### 布局
+##### 布局
 
 <div align='center'>
 <img src='https://raw.githubusercontent.com/WillBean/react-native-summary.github.io/master/images/vertical4.jpg' width='31%'>
 </div>
 
-###### 问题描述
+##### 问题描述
 
 如上图布局，更新还包括了课程分类的更新、加入了图片标题、课程入口的更新。
 
